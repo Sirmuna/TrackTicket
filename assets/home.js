@@ -76,6 +76,7 @@ function handleSignup(event) {
   const lastName = document.getElementById("lastName").value;
   const phone = document.getElementById("tel").value;
   const email = document.getElementById("email").value;
+  const dob = document.getElementById("DOB").value;
   const password = document.getElementById("signupPassword").value;
   const confirmPassword = document.getElementById("confirmPassword").value;
   const passwordError = document.getElementById("passwordError");
