@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Track Ticket | Login</title>
+    <link
+      rel="shortcut icon"
+      href="./assets/images/train-dark.png"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="./assets/style.css" />
+    <!-- font awesome icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Hamburger Menu Button -->
+    <button class="menu-btn">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+      <button class="tab active" data-tab="search">Search Trains</button>
+      <button class="tab" data-tab="booking">Book Ticket</button>
+      <button class="tab" data-tab="status">Booking Status</button>
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay"></div>
+    <div class="login">
+      <div class="nav">
+        <div class="logo">
+          <img
+            src="./assets/images/track-ticket.png"
+            alt="track ticket logo"
+            style="width: 100px; height: 70px"
+          />
+          <span style="color: blue; font-weight: 900; font-size: 32px"
+            >Track</span
+          >
+          <p style="color: goldenrod; font-weight: 900; font-size: 32px">
+            Ticket
+          </p>
+        </div>
+        <div class="nav-links">
+          <a href="#" class="active">Home</a>
+          <a href="#">FAQ</a>
+          <a href="#">Contact</a>
+        </div>
+        <div class="toggle-menu">
+          <i class="fa-regular fa-user"></i>
+          <a href="./signup.html" id="signupBtn">SIGN UP</a>
+        </div>
+      </div>
+
+      <!-- SIGN UP FORM -->
+        <form id="signupForm">
+        </form>
+      </div>
+    <script src="./assets/script.js"></script>
+  </body>
+</html>
+
+
+
+<!-- TESRTKGDFU -->
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Train Ticket Search</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f0f2f5;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 800px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #1a73e8;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #1a73e8;
+            box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.2);
+        }
+
+        .flex-1 {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        button {
+            background-color: #1a73e8;
+            color: white;
+            padding: 14px 28px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            width: 100%;
+            transition: background-color 0.2s;
+        }
+
+        button:hover {
+            background-color: #1557b0;
+        }
+
+        .station-suggestions {
+            position: absolute;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            width: 100%;
+            max-height: 200px;
+            overflow-y: auto;
+            display: none;
+            z-index: 1000;
+        }
+
+        .station-suggestions div {
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .station-suggestions div:hover {
+            background-color: #f0f2f5;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            .form-row {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .flex-1 {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Search Train Tickets</h1>
+        <form id="searchForm">
+            <div class="form-row">
+                <div class="form-group flex-1">
+                    <label for="fromStation">From Station</label>
+                    <input 
+                        type="text" 
+                        id="fromStation" 
+                        placeholder="Enter departure station"
+                        autocomplete="off"
+                        required
+                    >
+                    <div id="fromSuggestions" class="station-suggestions"></div>
+                </div>
+                <div class="form-group flex-1">
+                    <label for="toStation">To Station</label>
+                    <input 
+                        type="text" 
+                        id="toStation" 
+                        placeholder="Enter arrival station"
+                        autocomplete="off"
+                        required
+                    >
+                    <div id="toSuggestions" class="station-suggestions"></div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group flex-1">
+                    <label for="departDate">Departure Date</label>
+                    <input 
+                        type="date" 
+                        id="departDate"
+                        required
+                    >
+                </div>
+                <div class="form-group flex-1">
+                    <label for="passengers">Passengers</label>
+                    <select id="passengers" required>
+                        <option value="1">1 Passenger</option>
+                        <option value="2">2 Passengers</option>
+                        <option value="3">3 Passengers</option>
+                        <option value="4">4 Passengers</option>
+                        <option value="5">5 Passengers</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group flex-1">
+                    <label for="class">Travel Class</label>
+                    <select id="class" required>
+                        <option value="second">Second Class</option>
+                        <option value="first">First Class</option>
+                        <option value="ac">AC Chair Car</option>
+                        <option value="sleeper">Sleeper</option>
+                    </select>
+                </div>
+            </div>
+
+            <button type="submit">Search Trains</button>
+        </form>
+    </div>
+
+    <script>
+        // Sample station data (in real application, this would come from an API)
+        const stations = [
+            "Mumbai Central", "Delhi", "Bangalore", "Chennai Central",
+            "Kolkata", "Hyderabad", "Pune", "Ahmedabad", "Jaipur", "Lucknow"
+        ];
+
+        // Helper function to show suggestions
+        function showSuggestions(input, suggestionsDiv) {
+            const value = input.value.toLowerCase();
+            const filteredStations = stations.filter(station => 
+                station.toLowerCase().includes(value)
+            );
+
+            suggestionsDiv.innerHTML = '';
+            suggestionsDiv.style.display = filteredStations.length && value ? 'block' : 'none';
+
+            filteredStations.forEach(station => {
+                const div = document.createElement('div');
+                div.textContent = station;
+                div.onclick = () => {
+                    input.value = station;
+                    suggestionsDiv.style.display = 'none';
+                };
+                suggestionsDiv.appendChild(div);
+            });
+        }
+
+        // Set minimum date to today
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('departDate').min = today;
+
+        // Station search functionality
+        const fromStation = document.getElementById('fromStation');
+        const toStation = document.getElementById('toStation');
+        const fromSuggestions = document.getElementById('fromSuggestions');
+        const toSuggestions = document.getElementById('toSuggestions');
+
+        fromStation.addEventListener('input', () => showSuggestions(fromStation, fromSuggestions));
+        toStation.addEventListener('input', () => showSuggestions(toStation, toSuggestions));
+
+        // Close suggestions when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!fromStation.contains(e.target) && !fromSuggestions.contains(e.target)) {
+                fromSuggestions.style.display = 'none';
+            }
+            if (!toStation.contains(e.target) && !toSuggestions.contains(e.target)) {
+                toSuggestions.style.display = 'none';
+            }
+        });
+
+        // Form submission
+        document.getElementById('searchForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const formData = {
+                from: fromStation.value,
+                to: toStation.value,
+                date: document.getElementById('departDate').value,
+                passengers: document.getElementById('passengers').value,
+                class: document.getElementById('class').value
+            };
+
+            // Here you would typically send this data to your backend
+            console.log('Search submitted:', formData);
+            alert('Search submitted! Check console for details.');
+        });
+    </script>
+</body>
+</html>

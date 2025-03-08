@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Ticket | FAQ</title>
+    <!-- favicon -->
+         <link
+      rel="shortcut icon"
+      href="./assets/images/train-dark.png"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="./assets/faq.css">
+     <!-- font awesome icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+</head>
+<body>
+        <!-- mobile view -->
+    <div class="side-menu" id="side-panel">
+      <i
+        class="fa-solid fa-times"
+        id="close-panel"
+        style="font-size: 32px; color: #0000ff"
+      ></i>
+      <a href="./index.html" class="tab" data-tab="search">Home</a>
+      <a href="#" class="tab active" data-tab="booking">FAQ</a>
+      <a href="./time-table.html" class="tab" data-tab="status">Train Timetable</a>
+    </div>
+    <div class="overlay" id="overlay"></div>
+
+    <div class="login">
+      <!-- Navigation Bar -->
+      <div class="nav">
+        <div class="logo">
+          <img
+            src="./assets/images/track-ticket.png"
+            alt="track ticket logo"
+            style="width: 100px; height: 70px"
+          />
+          <div class="logo-txt">
+            <span
+              style="color: blue; font-weight: 900; font-size: 32px"
+              id="track"
+              >Track</span
+            >
+            <p style="color: goldenrod; font-weight: 900; font-size: 32px">
+              Ticket
+            </p>
+          </div>
+        </div>
+        <div class="nav-links">
+          <a href="./index.html">Home</a>
+          <a href="#" class="active">FAQ</a>
+          <a href="./time-table.html">Train Timetable</a>
+        </div>
+
+        <i
+          class="fa-solid fa-bars"
+          id="open-panel"
+        ></i>
+      </div>
+      <div class="faq-bc">
+        <h1>Frequently Asked Questions</h1>
+        <p>Welcome to our FAQ section. <br>If you have any questions about our service, please don't hesitate to ask.</p>
+      </div>
+    <div class="container">
+        <div class="section">
+            <button class="section-button" onclick="toggleSection('section1')">
+                Can I book a return ticket?
+                <span class="arrow"></span>
+            </button>
+            <div class="section-content" id="section1">
+                <div class="content-box">
+                    <h3>NO!</h3>
+                    <p>This feature is currently not available. You are required to book one way trips.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <button class="section-button" onclick="toggleSection('section2')">
+                Can I buy a ticket for next week?
+                <span class="arrow"></span>
+            </button>
+            <div class="section-content" id="section2">
+                <div class="content-box">
+                    <h3>NO!</h3>
+                    <p>You can only buy for same day or next day only.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <button class="section-button" onclick="toggleSection('section3')">
+                I forgot my password
+                <span class="arrow"></span>
+            </button>
+            <div class="section-content" id="section3">
+                <div class="content-box">
+                    <h3>Reset Password</h3>
+                    <p>You can click on the "forgot password?" on the login page.</p>
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <button class="section-button" onclick="toggleSection('section4')">
+                Can I get a refund?
+                <span class="arrow"></span>
+            </button>
+            <div class="section-content" id="section4">
+                <div class="content-box">
+                    <h3>NO!</h3>
+                    <p>Currently, TrackTicket has a NO REFUND policy.</p>
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <button class="section-button" onclick="toggleSection('section5')">
+                I missed my train, can I join the next train with the same ticket?
+                <span class="arrow"></span>
+            </button>
+            <div class="section-content" id="section5">
+                <div class="content-box">
+                    <h3>NO!</h3>
+                    <p>Your ticket is valid for only the train you paid for.</p>
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <button class="section-button" onclick="toggleSection('section6')">
+                My Plans have changed, i am not able to travel, can i get a refund?
+                <span class="arrow"></span>
+            </button>
+            <div class="section-content" id="section6">
+                <div class="content-box">
+                    <h3>NO!</h3>
+                    <p>Currently, TrackTicket  does not allow refunds.</p>
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <button class="section-button" onclick="toggleSection('section7')">
+                How can I create an account?
+                <span class="arrow"></span>
+            </button>
+            <div class="section-content" id="section7">
+                <div class="content-box">
+                    <h3>Signup!</h3>
+                    <p>You can access the registration form by clicking on the sign up button on our login page.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./assets/faq.js"></script>
+</body>
+</html>

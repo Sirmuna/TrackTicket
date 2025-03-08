@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Track Ticket | Login</title>
+    <!-- favicon -->
+    <link
+      rel="shortcut icon"
+      href="./assets/images/train-dark.png"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="./assets/dashboard.css" />
+    <!-- font awesome icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- mobile view -->
+    <div class="side-menu" id="side-panel">
+      <i
+        class="fa-solid fa-times"
+        id="close-panel"
+        style="font-size: 32px; color: #0000ff"
+      ></i>
+      <a href="#" class="tab active" data-tab="search">Home</a>
+      <a href="./faq.html" class="tab" data-tab="booking">FAQ</a>
+      <a href="./time-table.html" class="tab" data-tab="status"
+        >Train Timetable</a
+      >
+    </div>
+    <div class="overlay" id="overlay"></div>
+
+    <div class="login">
+      <!-- Navigation Bar -->
+      <div class="nav">
+        <div class="logo">
+          <img
+            src="./assets/images/track-ticket.png"
+            alt="track ticket logo"
+            style="width: 100px; height: 70px"
+          />
+          <div class="logo-txt">
+            <span
+              style="color: blue; font-weight: 900; font-size: 32px"
+              id="track"
+              >Track</span
+            >
+            <p style="color: goldenrod; font-weight: 900; font-size: 32px">
+              Ticket
+            </p>
+          </div>
+        </div>
+        <div class="nav-links">
+          <a href="#" class="active">Home</a>
+          <a href="./faq.html">FAQ</a>
+          <a href="./time-table.html">Train Timetable</a>
+        </div>
+        <div class="toggle-menu">
+          <i class="fa-regular fa-user"></i>
+          <a href="#" id="signupToggle">SIGN UP</a>
+        </div>
+        <i
+          class="fa-solid fa-bars"
+          id="open-panel"
+          style="font-size: 32px; color: #0000ff; display: none"
+        ></i>
+      </div>
+
+      <!-- Login Form -->
+      <div class="login-form" id="loginForm">
+        <div class="lf-head">
+          <a href="#" class="lf-active" id="loginToggle">LOG IN</a>
+          <a href="#" id="signupToggle2">SIGN UP</a>
+        </div>
+        <form id="login-form" onsubmit="return handleLogin(event)">
+          <input type="text" placeholder="Email Adress" id="emaile" required />
+          <div class="pass">
+            <input
+              type="password"
+              placeholder="Password"
+              id="password"
+              required
+            />
+            <button type="button" onclick="togglePassword()" id="passShow">
+              👁️
+            </button>
+          </div>
+          <a href="#" id="forgot">forgot password?</a>
+          <input type="submit" class="btn" value="Login" />
+        </form>
+      </div>
+
+      <!-- Signup Form -->
+      <div class="signup-form" id="signupForm">
+        <div class="lf-head">
+          <a href="#" id="loginToggle2">LOG IN</a>
+          <a href="#" class="lf-active">SIGN UP</a>
+        </div>
+        <form id="signup-form" onsubmit="return handleSignup(event)">
+          <input type="text" id="firstName" placeholder="First Name" required />
+          <input type="text" id="lastName" placeholder="Last Name" />
+          <input type="tel" id="tel" placeholder="Phone Number" required />
+          <input type="email" id="email" placeholder="Email Address" required />
+          <input type="date" id="DOB" required />
+          <input
+            type="password"
+            id="signupPassword"
+            placeholder="Enter Password"
+          />
+          <span id="passwordError" class="error"></span>
+          <input
+            type="password"
+            id="confirmPassword"
+            placeholder="Confirm Password"
+          />
+          <span id="confirmError" class="error"></span>
+          <button type="submit" class="btn">Sign Up</button>
+        </form>
+      </div>
+
+      <!-- Dashboard -->
+      <div class="dashboard-container" id="dashboardContainer">
+        <div class="cover">
+          <a href="./booking.html">TICKET BOOKING</a>
+        </div>
+        <div class="welcome-header">
+          <div class="user-info">Welcome to TrackTicket</div>
+          <button class="logout-btn" onclick="handleLogout()">Logout</button>
+        </div>
+        <!-- dashboard content -->
+        <div class="dashboard-content">
+          <div class="mini-dash">
+            <div class="user">
+              <i class="fa-solid fa-user-tie"></i>
+              <div class="user-info"><span id="userDisplay"></span>!</div>
+            </div>
+            <div class="user-card">
+              <div class="user-btn">
+                <p style="opacity: 30%; cursor:pointer;">Last Transaction</p>
+                <a href="#" class="btn" type="button">FUND WALLET</a>
+                <a href="./booking.html" class="btn" id="t-btn">BUY TICKET</a>
+              </div>
+              <div class="user-amount">
+                <p style="font-size: 32px; color: white">₦0</p>
+                <p style="font-size: 12px; color: white">Wallet Balance</p>
+              </div>
+            </div>
+            <div class="container">
+              <h2>🚆 Did You Know?</h2>
+              <p id="fact">Loading fact...</p>
+              <button onclick="showRandomFact()">Show Other Fact</button>
+            </div>
+          </div>
+          <div class="dash-ticket">
+            <div style="width: 100%; border-bottom:2px solid grey; padding-left:10px;">
+            <p style="color: black; font-weight:700;">Tickets</p>
+            <p>History of tickets purchased</p>
+            </div>
+            <h3 style="font-size: 34px;">Loading...</h3>
+            <p>This might take a while</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="./assets/dashboard.js"></script>
+    <script src="./assets/home.js"></script>
+  </body>
+</html>

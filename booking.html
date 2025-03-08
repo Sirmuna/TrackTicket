@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Track Ticket | Booking</title>
+    <!-- favicon -->
+    <link
+      rel="shortcut icon"
+      href="./assets/images/train-dark.png"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="./assets/faq.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        background: #f4f4f4;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        max-width: 400px;
+        margin: auto;
+        margin-top: 100px;
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      }
+      #passengers {
+        width: 95%;
+      }
+      h2 {
+        text-align: center;
+      }
+      label {
+        font-weight: bold;
+        display: block;
+        margin: 10px 0 5px;
+      }
+      select,
+      input {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 15px;
+      }
+      .btn {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        background: #daa520;
+        color: white;
+        text-align: center;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+        border-radius: 5px;
+        transition: all ease-in-out 0.5s;
+      }
+      .btn:hover {
+        background: transparent;
+        color: #daa520;
+        outline: 2px solid #daa520;
+      }
+      #ticket,
+      #searchResult {
+        display: none;
+        margin-top: 20px;
+        padding: 15px;
+        background: #e9ecef;
+        border-left: 5px solid #daa520;
+      }
+      #dark-train {
+        width: 150px;
+        height: 100px;
+      }
+      .search{
+        margin-top: 100px;
+        position: fixed;
+      }
+      @media screen and (max-width: 900px) {
+        .search {
+          display: none;
+        }
+      }
+
+      .search a {
+        color: #daa520;
+        text-decoration: underlined;
+        font-size: 24px;
+        font-weight: 600;
+        margin-left: 10px;
+        animation: blink 3s linear infinite alternate;
+        transition: all ease 1s;
+      }
+      @keyframes blink {
+        0% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.5;
+        }
+        100% {
+          opacity: 1;
+        }
+
+        100% {
+          color: #0000ff;
+        }
+      }
+      @media print {
+        body * {
+          visibility: hidden;
+        }
+        #ticket,
+        #ticket *,
+        #searchResult,
+        #searchResult * {
+          visibility: visible;
+        }
+        #ticket,
+        #searchResult {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100%;
+          padding: 20px;
+          font-size: 14px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- mobile view -->
+    <div class="side-menu" id="side-panel">
+      <i
+        class="fa-solid fa-times"
+        id="close-panel"
+        style="font-size: 32px; color: #0000ff"
+      ></i>
+      <a href="./index.html" class="tab" data-tab="search">Home</a>
+      <a href="#" class="tab" data-tab="booking">FAQ</a>
+      <a href="./time-table.html" class="tab" data-tab="status"
+      >Train Timetable</a>
+    </div>
+    <div class="overlay" id="overlay"></div>
+    <!-- Navigation Bar -->
+    <div class="nav">
+      <div class="logo">
+        <img
+          src="./assets/images/track-ticket.png"
+          alt="track ticket logo"
+          style="width: 100px; height: 70px"
+        />
+        <div class="logo-txt">
+          <span
+            style="color: blue; font-weight: 900; font-size: 32px"
+            id="track"
+            >Track</span
+          >
+          <p style="color: goldenrod; font-weight: 900; font-size: 32px">
+            Ticket
+          </p>
+        </div>
+      </div>
+      <div class="nav-links">
+        <a href="./index.html">Home</a>
+        <a href="#" class="active">FAQ</a>
+        <a href="./time-table.html">Train Timetable</a>
+      </div>
+
+      <i class="fa-solid fa-bars" id="open-panel"></i>
+    </div>
+    <div class="search">
+      <a href="#searchForm">Search for Ticket 🔍</a>
+    </div>
+
+    <div class="container" id="bookingForm">
+      <img
+        src="./assets/images/track-ticket.png"
+        alt="dark train"
+        id="dark-train"
+      />
+      <h2 style="color: #daa520; margin-top: -30px">Track Ticket</h2>
+      <h3 style="color: #0000ff; text-align: center; margin-top: -10px">
+        Book your ticket at ease!
+      </h3>
+
+      <label>From:</label>
+      <select id="departure">
+        <option value="Lagos">Lagos</option>
+        <option value="Abuja">Abuja</option>
+        <option value="Kano">Kano</option>
+      </select>
+
+      <label>To:</label>
+      <select id="destination">
+        <option value="Port Harcourt">Port Harcourt</option>
+        <option value="Kaduna">Kaduna</option>
+        <option value="Ibadan">Ibadan</option>
+      </select>
+
+      <label>Seat Class:</label>
+      <select id="seatClass">
+        <option value="Economy">Economy</option>
+        <option value="Business">Business</option>
+        <option value="First Class">First Class</option>
+      </select>
+
+      <label>Passengers:</label>
+      <input type="number" id="passengers" min="1" max="5" value="1" />
+
+      <label>Payment Method:</label>
+      <select id="payment">
+        <option value="Card">Credit/Debit Card</option>
+        <option value="Bank Transfer">Bank Transfer</option>
+        <option value="USSD">USSD</option>
+      </select>
+
+      <button class="btn" onclick="bookTicket()">Book Ticket</button>
+    </div>
+
+    <div class="container" id="ticket">
+      <h2 style="color: #daa520">Track Ticket</h2>
+      <h3>Booking Confirmation</h3>
+      <p><strong>From:</strong> <span id="ticketFrom"></span></p>
+      <p><strong>To:</strong> <span id="ticketTo"></span></p>
+      <p><strong>Seat Class:</strong> <span id="ticketClass"></span></p>
+      <p><strong>Passengers:</strong> <span id="ticketPassengers"></span></p>
+      <p><strong>Total Amount:</strong> ₦<span id="ticketAmount"></span></p>
+      <p><strong>Payment Method:</strong> <span id="ticketPayment"></span></p>
+      <p><strong>Ticket ID:</strong> <span id="ticketID"></span></p>
+      <button class="btn" onclick="printTicket()" style="margin-bottom: 10px">
+        Print Ticket
+      </button>
+      <button class="btn" onclick="backToForm()">Back</button>
+    </div>
+
+    <div class="container" id="searchForm" style="margin-top: 20px">
+      <h2>Search Ticket</h2>
+      <label>Enter Ticket ID:</label>
+      <input type="text" id="searchID" placeholder="Enter Ticket ID" />
+      <button class="btn" onclick="searchTicket()">Search Ticket</button>
+    </div>
+
+    <div class="container" id="searchResult">
+      <h3 style="color: #daa520; text-align: center">Ticket Details</h3>
+      <p><strong>From:</strong> <span id="searchFrom"></span></p>
+      <p><strong>To:</strong> <span id="searchTo"></span></p>
+      <p><strong>Seat Class:</strong> <span id="searchClass"></span></p>
+      <p><strong>Passengers:</strong> <span id="searchPassengers"></span></p>
+      <p><strong>Total Amount:</strong> ₦<span id="searchAmount"></span></p>
+      <p><strong>Payment Method:</strong> <span id="searchPayment"></span></p>
+      <p><strong>Ticket ID:</strong> <span id="searchTicketID"></span></p>
+      <button class="btn" onclick="printTicket()" style="margin-bottom: 10px">
+        Print Ticket
+      </button>
+      <button class="btn" onclick="backToForm()">Back</button>
+    </div>
+
+    <script>
+      const prices = {
+        "Lagos-Port Harcourt": {
+          Economy: 6415,
+          Business: 11415,
+          "First Class": 15415,
+        },
+        "Lagos-Kaduna": {
+          Economy: 6415,
+          Business: 12415,
+          "First Class": 18415,
+        },
+        "Abuja-Ibadan": { Economy: 4415, Business: 8415, "First Class": 12415 },
+        "Abuja-Port Harcourt": {
+          Economy: 5415,
+          Business: 10415,
+          "First Class": 14415,
+        },
+        "Abuja-Kaduna": { Economy: 4415, Business: 8415, "First Class": 12415 },
+        "Kano-Kaduna": { Economy: 3415, Business: 7415, "First Class": 10415 },
+        "Kano-Port Harcourt": {
+          Economy: 7415,
+          Business: 13415,
+          "First Class": 20415,
+        },
+        "Kano-Kaduna": { Economy: 3415, Business: 8415, "First Class": 11415 },
+        "Lagos-Ibadan": { Economy: 2415, Business: 5415, "First Class": 9415 },
+      };
+
+      function bookTicket() {
+        const passengersInput = document.getElementById("passengers");
+        let passengers = parseInt(passengersInput.value);
+
+        // Ensure passengers are at least 1
+        if (passengers < 1) {
+          alert("Passengers must be at least 1.");
+          passengersInput.value = 1; // Reset to 1
+          return;
+        }
+
+        const from = document.getElementById("departure").value;
+        const to = document.getElementById("destination").value;
+        const seatClass = document.getElementById("seatClass").value;
+        const payment = document.getElementById("payment").value;
+
+        const route = `${from}-${to}`;
+        const seatPrice = prices[route]?.[seatClass] || 5000;
+        const totalAmount = seatPrice * passengers;
+        const ticketID = "TKT" + Math.floor(Math.random() * 100000);
+
+        document.getElementById("ticketFrom").innerText = from;
+        document.getElementById("ticketTo").innerText = to;
+        document.getElementById("ticketClass").innerText = seatClass;
+        document.getElementById("ticketPassengers").innerText = passengers;
+        document.getElementById("ticketAmount").innerText = totalAmount;
+        document.getElementById("ticketPayment").innerText = payment;
+        document.getElementById("ticketID").innerText = ticketID;
+
+        document.getElementById("bookingForm").style.display = "none";
+        document.getElementById("ticket").style.display = "block";
+
+        localStorage.setItem(
+          ticketID,
+          JSON.stringify({
+            from,
+            to,
+            seatClass,
+            passengers,
+            totalAmount,
+            payment,
+            ticketID,
+          })
+        );
+      }
+
+      function searchTicket() {
+        const searchID = document.getElementById("searchID").value;
+        const ticketData = localStorage.getItem(searchID);
+
+        if (ticketData) {
+          const ticket = JSON.parse(ticketData);
+          document.getElementById("searchFrom").innerText = ticket.from;
+          document.getElementById("searchTo").innerText = ticket.to;
+          document.getElementById("searchClass").innerText = ticket.seatClass;
+          document.getElementById("searchPassengers").innerText =
+            ticket.passengers;
+          document.getElementById("searchAmount").innerText =
+            ticket.totalAmount;
+          document.getElementById("searchPayment").innerText = ticket.payment;
+          document.getElementById("searchTicketID").innerText = ticket.ticketID;
+          document.getElementById("searchResult").style.display = "block";
+          document.getElementById("searchForm").style.display = "none";
+        } else {
+          alert("Ticket not found!");
+        }
+      }
+
+      function printTicket() {
+        window.print();
+      }
+
+      function backToForm() {
+        location.reload();
+      }
+    </script>
+    <script src="./assets/faq.js"></script>
+  </body>
+</html>
