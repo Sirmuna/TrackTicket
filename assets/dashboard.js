@@ -101,46 +101,50 @@ document.querySelectorAll(".mobile-menu .tab").forEach((tab) => {
 
 const openPanel = document.getElementById("open-panel");
 const closePanel = document.getElementById("close-panel");
-const sidePanel = document.getElementById("side-panel")
+const sidePanel = document.getElementById("side-panel");
 const overlay = document.getElementById("overlay");
 
-openPanel.addEventListener("click", () => 
-{
-    sidePanel.style.display = "flex";
-    overlay.style.display = "flex";
+openPanel.addEventListener("click", () => {
+  sidePanel.style.display = "flex";
+  overlay.style.display = "flex";
 });
 
-closePanel.addEventListener("click", () => 
-    {
-    overlay.style.display = "none";
-    sidePanel.style.display = "none";
+closePanel.addEventListener("click", () => {
+  overlay.style.display = "none";
+  sidePanel.style.display = "none";
 });
-overlay.addEventListener("click", () => 
-{
-    sidePanel.style.display = "none";
-    overlay.style.display = "none";
+overlay.addEventListener("click", () => {
+  sidePanel.style.display = "none";
+  overlay.style.display = "none";
 });
 
 // facts
 
-        const facts = [
-          "The Trans-Siberian Railway is the longest railway line, stretching 9,289 km (5,772 miles).",
-          "Shanghai Maglev is the world's fastest train, reaching 431 km/h (268 mph).",
-          "Shinjuku Station in Tokyo is the busiest, serving 3.5 million passengers daily.",
-          "TrackTicket allow users to book train tickets at ease.",
-          "The first underground railway, the London Underground, opened in 1863.",
-          "High-speed trains are up to 5 times more energy-efficient than cars and planes.",
-          "The longest train journey without changing trains spans 18,755 km from Portugal to Singapore.",
-          "Switzerland set a record with a 1.9 km (1.2 miles) long passenger train in 2022.",
-          "Some unused train routes still run ‘ghost trains’ to keep tracks legally active.",
-          "Luxury trains like the Venice Simplon-Orient-Express offer 5-star experiences on rails.",
-        ];
+const facts = [
+  "The Trans-Siberian Railway is the longest railway line, stretching 9,289 km (5,772 miles).",
+  "Shanghai Maglev is the world's fastest train, reaching 431 km/h (268 mph).",
+  "Shinjuku Station in Tokyo is the busiest, serving 3.5 million passengers daily.",
+  "TrackTicket allow users to book train tickets at ease.",
+  "The first underground railway, the London Underground, opened in 1863.",
+  "High-speed trains are up to 5 times more energy-efficient than cars and planes.",
+  "The longest train journey without changing trains spans 18,755 km from Portugal to Singapore.",
+  "Switzerland set a record with a 1.9 km (1.2 miles) long passenger train in 2022.",
+  "Some unused train routes still run ‘ghost trains’ to keep tracks legally active.",
+  "Luxury trains like the Venice Simplon-Orient-Express offer 5-star experiences on rails.",
+];
 
-        function showRandomFact() {
-          const factElement = document.getElementById("fact");
-          const randomIndex = Math.floor(Math.random() * facts.length);
-          factElement.textContent = facts[randomIndex];
-        }
+function showRandomFact() {
+  const factElement = document.getElementById("fact");
+  const randomIndex = Math.floor(Math.random() * facts.length);
+  factElement.textContent = facts[randomIndex];
+}
 
-        // Show a random fact on page load
-        window.onload = showRandomFact;
+// Show a random fact on page load
+window.onload = showRandomFact;
+
+function openWhatsApp() {
+  const phone = "2347067752598";
+  const message = "Hello, I need assistance with TrackTicket train booking.";
+  const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+  window.open(url, "_blank");
+}

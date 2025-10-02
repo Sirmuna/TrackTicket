@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Care - TRACKTICKET</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e8f5e9 0%, #ffffff 50%, #e8f5e9 100%);
+            min-height: 100vh;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            color: #c8e6c9;
+            font-size: 1rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .hero-section {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .hero-section h2 {
+            font-size: 2.5rem;
+            color: #1b5e20;
+            margin-bottom: 1rem;
+        }
+
+        .hero-section p {
+            font-size: 1.2rem;
+            color: #666;
+        }
+
+        .quick-contact {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .contact-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+
+        .contact-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-card h3 {
+            font-size: 1.3rem;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-card p {
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-link {
+            color: #2e7d32;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 1.1rem;
+        }
+
+        .contact-link:hover {
+            text-decoration: underline;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .contact-form-section,
+        .faq-section {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: #1b5e20;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #2e7d32;
+            box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: transform 0.2s, box-shadow 0.3s;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(46, 125, 50, 0.3);
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #e0e0e0;
+            padding: 1rem 0;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 600;
+            color: #333;
+            padding: 0.5rem 0;
+            transition: color 0.3s;
+        }
+
+        .faq-question:hover {
+            color: #2e7d32;
+        }
+
+        .faq-icon {
+            font-size: 1.5rem;
+            color: #2e7d32;
+            transition: transform 0.3s;
+        }
+
+        .faq-icon.active {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            color: #666;
+            padding: 0;
+        }
+
+        .faq-answer.active {
+            max-height: 500px;
+            padding: 1rem 0;
+        }
+
+        .office-locations {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            margin-bottom: 2rem;
+        }
+
+        .location-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .location-card {
+            border: 2px solid #e0e0e0;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .location-card:hover {
+            border-color: #2e7d32;
+            background: #f1f8f4;
+        }
+
+        .location-card h4 {
+            font-size: 1.2rem;
+            color: #1b5e20;
+            margin-bottom: 0.75rem;
+        }
+
+        .location-detail {
+            display: flex;
+            align-items: start;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+            color: #666;
+        }
+
+        .location-detail span {
+            flex-shrink: 0;
+        }
+
+        .social-media {
+            background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 100%);
+            border-radius: 1rem;
+            padding: 2rem;
+            text-align: center;
+            color: white;
+        }
+
+        .social-media h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-decoration: none;
+        }
+
+        .social-icon:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .success-message {
+            background: #c8e6c9;
+            color: #1b5e20;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            display: none;
+            font-weight: 600;
+        }
+
+        .success-message.show {
+            display: block;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 968px) {
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-section h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .hero-section h2 {
+                font-size: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 1.4rem;
+            }
+
+            .social-icons {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Nigerian Railway Corporation</h1>
+        <p>Customer Care & Support</p>
+    </div>
+
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="hero-section">
+            <h2>How Can We Help You Today?</h2>
+            <p>We're here 24/7 to assist you with your travel needs</p>
+        </div>
+
+        <!-- Quick Contact Cards -->
+        <div class="quick-contact">
+            <div class="contact-card" onclick="window.location.href='tel:+2341234567890'">
+                <div class="contact-icon">📞</div>
+                <h3>Call Us</h3>
+                <p>Available 24/7</p>
+                <a href="tel:+2341234567890" class="contact-link">+234-1-234-5678</a>
+            </div>
+
+            <div class="contact-card" onclick="window.location.href='mailto:support@nrc.gov.ng'">
+                <div class="contact-icon">✉️</div>
+                <h3>Email Support</h3>
+                <p>Response within 24 hours</p>
+                <a href="mailto:support@nrc.gov.ng" class="contact-link">support@nrc.gov.ng</a>
+            </div>
+
+            <div class="contact-card" onclick="openWhatsApp()">
+                <div class="contact-icon">💬</div>
+                <h3>WhatsApp Chat</h3>
+                <p>Quick responses</p>
+                <a href="#" class="contact-link" onclick="event.preventDefault(); openWhatsApp()">Chat Now</a>
+            </div>
+
+            <div class="contact-card">
+                <div class="contact-icon">🕐</div>
+                <h3>Operating Hours</h3>
+                <p>Monday - Sunday</p>
+                <span class="contact-link">6:00 AM - 10:00 PM</span>
+            </div>
+        </div>
+
+        <!-- Two Column Section -->
+        <div class="two-column">
+            <!-- Contact Form -->
+            <div class="contact-form-section">
+                <h2 class="section-title">📝 Send Us a Message</h2>
+                <div id="successMessage" class="success-message">
+                    ✅ Your message has been sent successfully! We'll get back to you soon.
+                </div>
+                <form id="contactForm" onsubmit="handleSubmit(event)">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" required placeholder="Enter your full name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" required placeholder="+234 800 000 0000">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="category">Issue Category *</label>
+                        <select id="category" name="category" required>
+                            <option value="">Select a category</option>
+                            <option value="booking">Booking Issues</option>
+                            <option value="cancellation">Cancellation & Refunds</option>
+                            <option value="schedule">Train Schedule Inquiry</option>
+                            <option value="lost">Lost & Found</option>
+                            <option value="complaint">Complaint</option>
+                            <option value="feedback">Feedback</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" required placeholder="Please describe your issue or inquiry in detail..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-submit">Send Message</button>
+                </form>
+            </div>
+
+            <!-- FAQ Section -->
+            <div class="faq-section">
+                <h2 class="section-title">❓ Frequently Asked Questions</h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(0)">
+                        <span>How do I book a train ticket?</span>
+                        <span class="faq-icon" id="icon-0">▼</span>
+                    </div>
+                    <div class="faq-answer" id="answer-0">
+                        You can book tickets online through our website, via our mobile app, or at any NRC station. Simply select your route, date, class, and proceed to payment.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(1)">
+                        <span>What is the cancellation policy?</span>
+                        <span class="faq-icon" id="icon-1">▼</span>
+                    </div>
+                    <div class="faq-answer" id="answer-1">
+                        You can cancel your ticket up to 2 hours before departure for a full refund. Cancellations made less than 2 hours before departure are subject to a 50% cancellation fee.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(2)">
+                        <span>Can I reschedule my journey?</span>
+                        <span class="faq-icon" id="icon-2">▼</span>
+                    </div>
+                    <div class="faq-answer" id="answer-2">
+                        Yes, you can reschedule your journey up to 4 hours before departure. A rescheduling fee of ₦500 applies. Subject to seat availability on the new date.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(3)">
+                        <span>What documents do I need to travel?</span>
+                        <span class="faq-icon" id="icon-3">▼</span>
+                    </div>
+                    <div class="faq-answer" id="answer-3">
+                        You need a valid government-issued ID (National ID, Driver's License, or International Passport) and your booking confirmation (printed or digital).
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(4)">
+                        <span>How much luggage can I bring?</span>
+                        <span class="faq-icon" id="icon-4">▼</span>
+                    </div>
+                    <div class="faq-answer" id="answer-4">
+                        Economy class passengers are allowed 20kg of luggage, Business class 25kg, and First Class 30kg. Additional luggage is charged at ₦500 per kilogram.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(5)">
+                        <span>Are meals provided on long journeys?</span>
+                        <span class="faq-icon" id="icon-5">▼</span>
+                    </div>
+                    <div class="faq-answer" id="answer-5">
+                        Yes, complimentary meals are provided on journeys over 6 hours for Business and First Class passengers. Economy passengers can purchase meals from the onboard cafeteria.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Office Locations -->
+        <div class="office-locations">
+            <h2 class="section-title">📍 Visit Our Offices</h2>
+            <div class="location-grid">
+                <div class="location-card">
+                    <h4>Lagos Office</h4>
+                    <div class="location-detail">
+                        <span>📍</span>
+                        <span>Ebute Metta Railway Station, Oyingbo, Lagos State</span>
+                    </div>
+                    <div class="location-detail">
+                        <span>📞</span>
+                        <span>+234-1-234-5678</span>
+                    </div>
+                    <div class="location-detail">
+                        <span>⏰</span>
+                        <span>Mon-Sun: 6:00 AM - 10:00 PM</span>
+                    </div>
+                </div>
+
+                <div class="location-card">
+                    <h4>Abuja Office</h4>
+                    <div class="location-detail">
+                        <span>📍</span>
+                        <span>Idu Railway Station, Federal Capital Territory</span>
+                    </div>
+                    <div class="location-detail">
+                        <span>📞</span>
+                        <span>+234-9-456-7890</span>
+                    </div>
+                    <div class="location-detail">
+                        <span>⏰</span>
+                        <span>Mon-Sun: 6:00 AM - 10:00 PM</span>
+                    </div>
+                </div>
+
+                <div class="location-card">
+                    <h4>Kaduna Office</h4>
+                    <div class="location-detail">
+                        <span>📍</span>
+                        <span>Rigasa Railway Station, Kaduna State</span>
+                    </div>
+                    <div class="location-detail">
+                        <span>📞</span>
+                        <span>+234-62-123-456</span>
+                    </div>
+                    <div class="location-detail">
+                        <span>⏰</span>
+                        <span>Mon-Sun: 6:00 AM - 10:00 PM</span>
+                    </div>
+                </div>
+
+                <div class="location-card">
+                    <h4>Port Harcourt Office</h4>
+                    <div class="location-detail">
+                        <span>📍</span>
+                        <span>Central Railway Station, Rivers State</span>
+                    </div>
+                    <div class="location-detail">
+                        <span>📞</span>
+                        <span>+234-84-234-567</span>
+                    </div>
+                    <div class="location-detail">
+                        <span>⏰</span>
+                        <span>Mon-Sun: 6:00 AM - 10:00 PM</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Social Media -->
+        <div class="social-media">
+            <h3>Connect With Us on Social Media</h3>
+            <p>Follow us for updates, promotions, and travel tips</p>
+            <div class="social-icons">
+                <a href="#" class="social-icon" onclick="return false;" title="Facebook">📘</a>
+                <a href="#" class="social-icon" onclick="return false;" title="Twitter">🐦</a>
+                <a href="#" class="social-icon" onclick="return false;" title="Instagram">📷</a>
+                <a href="#" class="social-icon" onclick="return false;" title="LinkedIn">💼</a>
+                <a href="#" class="social-icon" onclick="return false;" title="YouTube">📺</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleFAQ(index) {
+            const answer = document.getElementById(`answer-${index}`);
+            const icon = document.getElementById(`icon-${index}`);
+            
+            // Close all other FAQs
+            for (let i = 0; i < 6; i++) {
+                if (i !== index) {
+                    document.getElementById(`answer-${i}`).classList.remove('active');
+                    document.getElementById(`icon-${i}`).classList.remove('active');
+                }
+            }
+            
+            // Toggle current FAQ
+            answer.classList.toggle('active');
+            icon.classList.toggle('active');
+        }
+
+        function handleSubmit(event) {
+            event.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData);
+            
+            // Show success message
+            const successMessage = document.getElementById('successMessage');
+            successMessage.classList.add('show');
+            
+            // Reset form
+            event.target.reset();
+            
+            // Hide success message after 5 seconds
+            setTimeout(() => {
+                successMessage.classList.remove('show');
+            }, 5000);
+            
+            // Log form data (in a real application, this would be sent to a server)
+            console.log('Form submitted:', data);
+        }
+
+        function openWhatsApp() {
+            const phone = '2341234567890';
+            const message = 'Hello, I need assistance with NRC train booking.';
+            const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+        }
+    </script>
+</body>
+</html>

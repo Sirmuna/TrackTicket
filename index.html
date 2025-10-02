@@ -10,6 +10,7 @@
       href="./assets/images/train-dark.png"
       type="image/x-icon"
     />
+    <link rel="stylesheet" href="./assets/care.css" />
     <link rel="stylesheet" href="./assets/dashboard.css" />
     <!-- font awesome icons -->
     <link
@@ -88,7 +89,7 @@
               👁️
             </button>
           </div>
-          <a href="#" id="forgot">forgot password?</a>
+          <a href="./password-reset.html" id="forgot">forgot password?</a>
           <input type="submit" class="btn" value="Login" />
         </form>
       </div>
@@ -139,8 +140,8 @@
             </div>
             <div class="user-card">
               <div class="user-btn">
-                <p style="opacity: 10%; cursor:pointer;">Last Transaction</p>
-                <a href="#" class="btn" type="button">FUND WALLET</a>
+                <p style="opacity: 10%; cursor: pointer">Last Transaction</p>
+                <!-- <a href="#" class="btn" type="button">FUND WALLET</a> -->
                 <a href="./booking.html" class="btn" id="t-btn">BUY TICKET</a>
               </div>
               <div class="user-amount">
@@ -155,13 +156,90 @@
             </div>
           </div>
           <div class="dash-ticket">
-            <div style="width: 100%; border-bottom:2px solid grey; padding-left:10px;">
-            <p style="color: black; font-weight:700;">Tickets</p>
-            <p>History of tickets purchased</p>
+            <div
+              style="
+                width: 100%;
+                border-bottom: 2px solid grey;
+                padding-left: 10px;
+              "
+            >
+              <p style="color: black; font-weight: 700">Tickets</p>
+              <p>History of tickets purchased</p>
             </div>
-            <h3 style="font-size: 34px;">Loading...</h3>
+            <h3 style="font-size: 34px">Loading...</h3>
             <p>This might take a while</p>
           </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="care-container">
+      <!-- Hero Section -->
+      <div class="hero-section">
+        <h2>How Can We Help You Today?</h2>
+        <p>We're here 24/7 to assist you with your travel needs</p>
+      </div>
+
+      <!-- Quick Contact Cards -->
+      <div class="quick-contact">
+        <div
+          class="contact-card"
+          onclick="window.location.href='tel:+2347067752598'"
+        >
+          <div class="contact-icon">📞</div>
+          <h3>Call Us</h3>
+          <p>Available 24/7</p>
+          <a href="tel:+2347067752598" class="contact-link"
+            >+234-706-775-2598</a
+          >
+        </div>
+
+        <div
+          class="contact-card"
+          onclick="window.location.href='mailto:support@nrc.gov.ng'"
+        >
+          <div class="contact-icon">✉️</div>
+          <h3>Email Support</h3>
+          <p>Response within 24 hours</p>
+          <a href="mailto:tracticket@nrc.gov.ng" class="contact-link"
+            >trackticket@nrc.gov.ng</a
+          >
+        </div>
+
+        <div class="contact-card" onclick="openWhatsApp()">
+          <div class="contact-icon">💬</div>
+          <h3>WhatsApp Chat</h3>
+          <p>Quick responses</p>
+          <a
+            href="#"
+            class="contact-link"
+            onclick="event.preventDefault(); openWhatsApp()"
+            >Chat Now</a
+          >
+        </div>
+
+        <div class="contact-card">
+          <div class="contact-icon">🕐</div>
+          <h3>Operating Hours</h3>
+          <p>Monday - Sunday</p>
+          <span class="contact-link">6:00 AM - 10:00 PM</span>
+        </div>
+      </div>
+    </div>
+    <!-- Footer Info -->
+    <div class="footer-info">
+      <div class="footer-grid">
+        <div class="footer-item">
+          <h4>24/7 Support</h4>
+          <p>Call +2347067752598 for assistance</p>
+        </div>
+        <div class="footer-item">
+          <h4>Search Ticket</h4>
+          <p>Retrieve Ticket with your Ticket ID</p>
+        </div>
+        <div class="footer-item">
+          <h4>Mobile Tickets</h4>
+          <p>Show your ticket on your phone</p>
         </div>
       </div>
     </div>

@@ -3,19 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Track Ticket | Train Timetable</title>
-        <!-- favicon -->
-         <link
-      rel="shortcut icon"
-      href="./assets/images/train-dark.png"
-      type="image/x-icon"
-    />
-    <link rel="stylesheet" href="./assets/faq.css">
-     <!-- font awesome icons -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-    />
+    <title>Train Timetable - Nigerian Railway Corporation</title>
+        <link rel="stylesheet" href="./assets/dashboard.css" />
+
     <style>
         * {
             margin: 0;
@@ -345,22 +335,7 @@
     </style>
 </head>
 <body>
-              <!-- mobile view -->
-    <div class="side-menu" id="side-panel">
-      <i
-        class="fa-solid fa-times"
-        id="close-panel"
-        style="font-size: 32px; color: #0000ff"
-      ></i>
-      <a href="./index.html" class="tab" data-tab="search">Home</a>
-      <a href="./faq.html" class="tab" data-tab="booking">FAQ</a>
-      <a href="#" class="tab active" data-tab="status">Train Timetable</a>
-    </div>
-    <div class="overlay" id="overlay"></div>
-
-    <div class="login">
-      <!-- Navigation Bar -->
-      <div class="nav">
+          <div class="nav">
         <div class="logo">
           <img
             src="./assets/images/track-ticket.png"
@@ -383,12 +358,19 @@
           <a href="./faq.html">FAQ</a>
           <a href="#" class="active">Train Timetable</a>
         </div>
-
+        <div class="toggle-menu">
+          <i class="fa-regular fa-user"></i>
+          <a href="#" id="signupToggle">SIGN UP</a>
+        </div>
         <i
           class="fa-solid fa-bars"
           id="open-panel"
+          style="font-size: 32px; color: #0000ff; display: none"
         ></i>
       </div>
+        <div class="cover">
+          <a href="./booking.html">TICKET BOOKING</a>
+        </div>
     <div class="container">
         <!-- Page Introduction -->
         <div class="page-intro">
@@ -872,6 +854,5 @@
             </div>
         </div>
     </div>
-      <script src="./assets/faq.js"></script>
 </body>
 </html>
